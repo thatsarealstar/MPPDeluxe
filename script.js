@@ -29,6 +29,7 @@ function init() {
     MPP.client.sendArray([{m: "userset", set: {color: defaultcolor}}])
     }
   }
+  console.log("By the way, use !defname 'name' or !defcolor 'hex code' to set a default name or color!")
 }
 
 init()
