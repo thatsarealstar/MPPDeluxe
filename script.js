@@ -40,10 +40,27 @@ MPP.client.on("a", msg => {
   let tokenNames = JSON.parse(localStorage.getItem("tokenNames")); // Parse the string into an array
   
   if (command === "!switchtoken") {
+    if (!args[1]) {
     if (tokenNames && tokenNames.length > 0) {
       MPP.client.sendArray([{ m: "a", message: "List of tokens: " + tokenNames.join(", "), reply_to: msg.id }]);
     } else {
       MPP.client.sendArray([{ m: "a", message: "Oops! No tokens avaliable.", reply_to: msg.id }]);
+    }
+    } else if (args[1]) {
+        if (tokenNames.includes(tokenName)) {
+      MPP.client.sendArray([{ m: "a", message: "Switching, please wait..." }]);
+
+      // Check if the token exists in the 'tokens' object
+      if (tokens[tokenName]) {
+        let tokenId = tokens[tokenName].token;
+        localStorage.setItem('token', tokenId);  // Set the token in localStorage
+        MPP.client.sendArray([{ m: "a", message: "Successfully switched to token: " + tokenName }]);
+      } else {
+        MPP.client.sendArray([{ m: "a", message: "Token not found for: " + tokenName }]);
+      }
+    } else {
+      MPP.client.sendArray([{ m: "a", message: "Token name not found in your list!" }]);
+    }
     }
   }
 });
