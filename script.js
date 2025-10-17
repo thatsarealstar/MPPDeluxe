@@ -1,14 +1,17 @@
+let changedname = ""
+let changedcolor = ""
+
 function init() {
   // First step: Check name and color!
   let defaultname = localStorage.getItem("defname")
   let defaultcolor = localStorage.getItem("defcolor")
   if (!defaultname) {
     console.log("No default name found! Not changing..")
-    let changedname = false
+    changedname = false
   }
   if (!defaultcolor) {
     console.log("No default color found! Not changing...")
-    let changedcolor = false
+    changedcolor = false
   }
   if (MPP.client.user.name !== defaultname) {
     if (changedname === false) {
