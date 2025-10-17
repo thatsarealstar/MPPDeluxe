@@ -24,6 +24,7 @@ function init() {
     } else {
     console.log("Fixing your color, hold on...")
     MPP.client.sendArray([{m: "userset", set: {color: defaultcolor}}])
+    }
   }
 }
 
