@@ -33,3 +33,17 @@ function init() {
 }
 
 init()
+
+MPP.client.on("a", msg => {
+  let args = msg.a.split(" ");
+  let command = args[0];
+  let tokenNames = JSON.parse(localStorage.getItem("tokenNames")); // Parse the string into an array
+  
+  if (command === "!switchtoken") {
+    if (tokenNames && tokenNames.length > 0) {
+      MPP.client.sendArray([{ m: "a", message: "List of tokens: " + tokenNames.join(", "), reply_to: msg.id }]);
+    } else {
+      MPP.client.sendArray([{ m: "a", message: "Oops! No tokens avaliable.", reply_to: msg.id }]);
+    }
+  }
+});
